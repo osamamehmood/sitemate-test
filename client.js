@@ -20,6 +20,15 @@ async function updateObject(updatedObject) {
     }
 }
 
+async function deleteObject() {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/delete`);
+        console.log('Delete response:', response);
+    } catch (error) {
+        console.error('Delete error:', error);
+    }
+}
+
 async function runClient() {
     // Read
     await readObject();
@@ -35,6 +44,7 @@ async function runClient() {
     // re read object after updating
     await readObject();
 
+    await deleteObject();
 }
 
 runClient().then(r => console.log('done reading'));
