@@ -43,7 +43,11 @@ app.put('/update', (req, res) => {
     // dont let the id to be edited, this is just to get the code working
     const editedObject =  Object.values(storedObject).map(item => {
         if (item.id === editedIssue.id) {
-            return {id:editedIssue.id, description: editedIssue.description, title: editedIssue.title};
+            return {
+                id: editedIssue.id,
+                description: editedIssue.description,
+                title: editedIssue.title
+            };
         } else {
             return item
         }
