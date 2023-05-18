@@ -45,11 +45,11 @@ app.put('/update', (req, res) => {
         if (item.id === editedIssue.id) {
             return {id:editedIssue.id, description: editedIssue.description, title: editedIssue.title};
         } else {
-            return {item}
+            return item
         }
     });
     console.log('editedObject', editedObject);
-    storedObject = editedObject.map( item => Object.assign({item}));
+    storedObject = editedObject.map(item => Object.assign({}, item));
     console.log('Updated object:', storedObject);
     res.sendStatus(200);
 });
