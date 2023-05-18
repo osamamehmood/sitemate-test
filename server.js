@@ -11,15 +11,30 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-let storedObject = 'hello';
+let storedObject = {
+    issue1: {
+        id: 1,
+        title:'Issue Number 1',
+        description: 'This is a description for issue 1'
+    },
+    issue2: {
+        id: 2,
+        title:'Issue Number 2',
+        description: 'This is a description for issue 2'
+    },
+    issue3: {
+        id: 2,
+        title:'Issue Number 3',
+        description: 'This is a description for issue 3'
+    }
+};
 
 // Rest of the code remains the same...
 
 // Read operation
 app.get('/read', (req, res) => {
     console.log('Returning object:', storedObject);
-    // res.json('hi');
-    res.send("Hello");
+    res.send(storedObject);
 });
 
 // Start the server
