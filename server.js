@@ -37,6 +37,25 @@ app.get('/read', (req, res) => {
     res.send(storedObject);
 });
 
+// Update operation
+app.put('/update', (req, res) => {
+    const editedIssue = req.body;
+    // dont let the id to be edited, this is just to get the code working
+    const editedObject =  Object.values(storedObject).map(item => {
+        if (item.id === editedIssue.id) {
+            return {id:editedIssue.id, description: editedIssue.description, title: editedIssue.title};
+        } else {
+            return {item}
+        }
+    });
+    console.log('editedObject', editedObject);
+    storedObject = editedObject.map( item => Object.assign({item}));
+    console.log('Updated object:', storedObject);
+    res.sendStatus(200);
+});
+
+
+
 // Start the server
 app.listen(3000, () => {
     console.log('REST API server is running on port 3000');

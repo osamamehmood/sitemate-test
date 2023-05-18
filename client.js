@@ -11,9 +11,30 @@ async function readObject() {
     }
 }
 
+async function updateObject(updatedObject) {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/update`, updatedObject);
+        console.log('Update response:', response.data);
+    } catch (error) {
+        console.error('Update error:', error);
+    }
+}
+
 async function runClient() {
     // Read
     await readObject();
+
+
+    const updatedObject = {
+        id: 1,
+        title:'Issue Number 1 updated',
+        description: 'This is an UPDATED description for issue 1'
+    };
+    await updateObject(updatedObject);
+
+    // re read object after updating
+    await readObject();
+
 }
 
 runClient().then(r => console.log('done reading'));
